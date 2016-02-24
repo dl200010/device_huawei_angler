@@ -430,9 +430,13 @@ on property:ro.boot.wifi_cal=3
 on property:ro.boot.hardware.sku=H1511
     setprop ro.boot.wificountrycode US
 
-service initd /system/bin/initd.sh
+#------------------------------------------------------------------#
+service initd /system/bin/logwrapper /system/xbin/busybox run-parts /system/etc/init.d/
     class main
+    user root
+    group root
     oneshot
+#------------------------------------------------------------------#
 
 service mcfg-sh /system/bin/init.mcfg.sh
    class late_start

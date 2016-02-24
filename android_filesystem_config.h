@@ -21,8 +21,10 @@
 
 #include <private/android_filesystem_config.h>
 
-#define NO_ANDROID_FILESYSTEM_CONFIG_DEVICE_DIRS
-/* static const struct fs_path_config android_device_dirs[] = { }; */
+static const struct fs_path_config android_device_dirs[] = {
+    /* for init.d support */
+    { 00755, AID_ROOT,   AID_ROOT,   0, "system/etc/init.d" },
+ };
 
 /* Rules for files.
 ** These rules are applied based on "first match", so they
@@ -31,8 +33,7 @@
 ** and will allow partial matches.
 */
 static const struct fs_path_config android_device_files[] = {
+    /* for init.d support */
+    { 00755, AID_ROOT,      AID_ROOT,      0, "system/etc/init.d/*" },
     { 00700, AID_RADIO,     AID_SHELL,     (1ULL << CAP_BLOCK_SUSPEND), "system/bin/qmuxd" },
-#ifdef NO_ANDROID_FILESYSTEM_CONFIG_DEVICE_DIRS
-    { 00000, AID_ROOT,      AID_ROOT,      0, "system/etc/fs_config_dirs" },
-#endif
 };
