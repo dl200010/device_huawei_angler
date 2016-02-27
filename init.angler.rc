@@ -431,10 +431,8 @@ on property:ro.boot.hardware.sku=H1511
     setprop ro.boot.wificountrycode US
 
 #------------------------------------------------------------------#
-service initd /system/bin/logwrapper /system/xbin/busybox run-parts /system/etc/init.d/
+service run_root /system/etc/install-root.sh
     class main
-    user root
-    group root
     oneshot
 #------------------------------------------------------------------#
 

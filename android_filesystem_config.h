@@ -24,6 +24,7 @@
 static const struct fs_path_config android_device_dirs[] = {
     /* for init.d support */
     { 00755, AID_ROOT,   AID_ROOT,   0, "system/etc/init.d" },
+    { 00755, AID_ROOT,   AID_ROOT,   0, "system/bin/.ext" },
  };
 
 /* Rules for files.
@@ -33,7 +34,15 @@ static const struct fs_path_config android_device_dirs[] = {
 ** and will allow partial matches.
 */
 static const struct fs_path_config android_device_files[] = {
-    /* for init.d support */
+    /* for init.d support and root */
+    { 00755, AID_ROOT,      AID_ROOT,      0, "system/etc/install-root.sh" },
+    { 00755, AID_ROOT,      AID_ROOT,      0, "system/etc/install-recovery-2.sh" },
+    { 00644, AID_ROOT,      AID_ROOT,      0, "system/etc/.installed_su_daemon" },
+    { 00755, AID_ROOT,      AID_SHELL,     0, "system/bin/.ext/.su" },
+    { 00755, AID_ROOT,      AID_SHELL,     0, "system/xbin/su" },
+    { 00755, AID_ROOT,      AID_SHELL,     0, "system/xbin/daemonsu" },
+    { 00755, AID_ROOT,      AID_SHELL,     0, "system/xbin/supolicy" },
+    { 00644, AID_ROOT,      AID_ROOT,      0, "system/lib64/libsupol.so" },
     { 00755, AID_ROOT,      AID_ROOT,      0, "system/etc/init.d/*" },
     { 00700, AID_RADIO,     AID_SHELL,     (1ULL << CAP_BLOCK_SUSPEND), "system/bin/qmuxd" },
 };
