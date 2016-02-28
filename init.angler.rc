@@ -430,12 +430,6 @@ on property:ro.boot.wifi_cal=3
 on property:ro.boot.hardware.sku=H1511
     setprop ro.boot.wificountrycode US
 
-#------------------------------------------------------------------#
-service run_root /system/etc/install-root.sh
-    class main
-    oneshot
-#------------------------------------------------------------------#
-
 service mcfg-sh /system/bin/init.mcfg.sh
    class late_start
    user radio
